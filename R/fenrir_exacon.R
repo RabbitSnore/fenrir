@@ -11,9 +11,12 @@
 
 # To do:
 # - Test to see what breaks the function
-# - Allow for 0 frequencies
+# - Check and coerce inputs as necessary
+# - Error messages for incorrect input
 
 exacon <- function(f) {
+  
+  # The input f should be a rectangular matrix or table of frequencies.
   
   # Extract values
   
@@ -43,39 +46,55 @@ exacon <- function(f) {
     
     if (f[i] > e[i]) {
       
-      p_i    <- rep(NA, length(f[i]:N) + 1)
-      
-      p_i[1] <- p_f
-      
-      for (j in 2:(length(f[i]:N) + 1)) {
+      if (f[i] == N | f[i] == 0) {
         
-        x      <- f[i] + j - 2
+        p_f
         
-        g <- (p[i] * (N - x)) / (q[i] * (x + 1))
+      } else {
         
-        p_i[j] <- p_i[j - 1] * g
+        p_i    <- rep(NA, length(f[i]:N) + 1)
+        
+        p_i[1] <- p_f
+        
+        for (j in 2:(length(f[i]:N) + 1)) {
+          
+          x      <- f[i] + j - 2
+          
+          g <- (p[i] * (N - x)) / (q[i] * (x + 1))
+          
+          p_i[j] <- p_i[j - 1] * g
+          
+        }
+        
+        sum(p_i)
         
       }
-      
-      sum(p_i)
       
     } else {
       
-      p_i    <- rep(NA, length(0:f[i]))
-      
-      p_i[1] <- p_f
-      
-      for (j in 1:f[i]) {
+      if (f[i] == N | f[i] == 0) {
         
-        x      <- f[i] - j + 1
+        p_f
         
-        g <- (x * q[i]) / (p[i] * (N - x + 1))
+      } else {
         
-        p_i[j + 1] <- p_i[j] * g
+        p_i    <- rep(NA, length(0:f[i]))
+        
+        p_i[1] <- p_f
+        
+        for (j in 1:f[i]) {
+          
+          x      <- f[i] - j + 1
+          
+          g <- (x * q[i]) / (p[i] * (N - x + 1))
+          
+          p_i[j + 1] <- p_i[j] * g
+          
+        }
+        
+        sum(p_i)
         
       }
-      
-      sum(p_i)
       
     }
     
@@ -96,39 +115,55 @@ exacon <- function(f) {
     
     if (f[i] > e[i]) {
       
-      p_i    <- rep(NA, length(f[i]:N) + 1)
-      
-      p_i[1] <- p_f
-      
-      for (j in 2:(length(f[i]:N) + 1)) {
+      if (f[i] == N | f[i] == 0) {
         
-        x      <- f[i] + j - 2
+        p_f
         
-        g <- ((c - x) * (r - x)) / ((x + 1) * (N - c - r + x + 1))
+      } else {
         
-        p_i[j] <- p_i[j - 1] * g
+        p_i    <- rep(NA, length(f[i]:N) + 1)
+        
+        p_i[1] <- p_f
+        
+        for (j in 2:(length(f[i]:N) + 1)) {
+          
+          x      <- f[i] + j - 2
+          
+          g <- ((c - x) * (r - x)) / ((x + 1) * (N - c - r + x + 1))
+          
+          p_i[j] <- p_i[j - 1] * g
+          
+        }
+        
+        sum(p_i)
         
       }
-      
-      sum(p_i)
       
     } else {
       
-      p_i    <- rep(NA, length(0:f[i]))
-      
-      p_i[1] <- p_f
-      
-      for (j in 1:f[i]) {
+      if (f[i] == N | f[i] == 0) {
         
-        x      <- f[i] - j + 1
+        p_f
         
-        g <- (x * (N - c - r + x)) / ((c - x + 1) * (r - x + 1))
+      } else {
         
-        p_i[j + 1] <- p_i[j] * g
+        p_i    <- rep(NA, length(0:f[i]))
+        
+        p_i[1] <- p_f
+        
+        for (j in 1:f[i]) {
+          
+          x      <- f[i] - j + 1
+          
+          g <- (x * (N - c - r + x)) / ((c - x + 1) * (r - x + 1))
+          
+          p_i[j + 1] <- p_i[j] * g
+          
+        }
+        
+        sum(p_i)
         
       }
-      
-      sum(p_i)
       
     }
     

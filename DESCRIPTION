@@ -1,0 +1,12 @@
+Package: fenrir
+Title: A Package for Person-Oriented Analysis
+Version: 0.0.0.9000
+Authors@R: 
+    person("Timothy", "Luke", , "timothy.luke@psy.gu.se", 
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-5513-6605"))
+Description: Functions for person-oriented analysis. Early work in progress!
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3

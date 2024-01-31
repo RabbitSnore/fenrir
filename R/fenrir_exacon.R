@@ -22,7 +22,8 @@
 #' @param f A contingency table.
 #'
 #' @return A list, with the observed values, expected values, binomial
-#' probabilities, and hypergeometric probabilities.
+#' probabilities, hypergeometric probabilities, and ratios of observed to
+#' expected values.
 #' @export
 #'
 #' @examples
@@ -197,13 +198,24 @@ exacon <- function(f) {
 
   }
 
+  # Calculate odds ratios
+
+  or <- matrix(rep(NA, length(f)), nrow = nrow(f))
+
+  for (i in index) {
+
+    or[i] <- f[i]/e[i]
+
+  }
+
   # Create output
 
   out <- list(
     "observed" = f,
     "expected" = e,
     "bin_prob" = pb,
-    "hyp_prob" = ph
+    "hyp_prob" = ph,
+    "oe_ratio" = or
   )
 
   return(out)

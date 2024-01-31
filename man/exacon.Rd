@@ -11,7 +11,8 @@ exacon(f)
 }
 \value{
 A list, with the observed values, expected values, binomial
-probabilities, and hypergeometric probabilities.
+probabilities, hypergeometric probabilities, and ratios of observed to
+expected values.
 }
 \description{
 This function is designed to replicate the behavior of the EXACON program
